@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Markstd.css'; // Import the CSS file
 
+const API_BASE_URL = 'https://students-page.onrender.com';
+
 export const Markstd = () => {
   const [studentData, setStudentData] = useState(null);
   const rollno = localStorage.getItem('rollno');
@@ -8,7 +10,7 @@ export const Markstd = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/stdmark/${rollno}`);
+        const response = await fetch(`${API_BASE_URL}/stdmark/${rollno}`);
         const data = await response.json();
 
         if (response.ok) {
