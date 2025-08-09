@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Login.css'; // your existing CSS file
+import './Login.css';
 
 const API_BASE_URL = 'https://students-page.onrender.com';
 
@@ -15,18 +15,15 @@ function Login() {
     try {
       const response = await fetch(`${API_BASE_URL}/login`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        // Store roll number in local storage
         localStorage.setItem('rollno', data.rollno);
-        navigate('/stdmark'); // Redirect to students page on success
+        navigate('/stdmark');
       } else {
         alert(data.message || 'Invalid username or roll number.');
       }
@@ -63,9 +60,7 @@ function Login() {
             autoComplete="current-password"
           />
 
-          <button type="submit" className="btn-login">
-            Log In
-          </button>
+          <button type="submit" className="btn-login">Log In</button>
         </form>
       </div>
     </div>

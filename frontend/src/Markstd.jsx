@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Markstd.css'; // Import the CSS file
+import './Markstd.css';
 
 const API_BASE_URL = 'https://students-page.onrender.com';
 
@@ -24,9 +24,7 @@ export const Markstd = () => {
       }
     };
 
-    if (rollno) {
-      fetchData();
-    }
+    if (rollno) fetchData();
   }, [rollno]);
 
   return (
@@ -45,32 +43,14 @@ export const Markstd = () => {
             </div>
             <table className="result-table">
               <thead>
-                <tr>
-                  <th>Subject</th>
-                  <th>Marks</th>
-                </tr>
+                <tr><th>Subject</th><th>Marks</th></tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Java Programming (JP)</td>
-                  <td>{studentData.JP}</td>
-                </tr>
-                <tr>
-                  <td>Data Structures (DS)</td>
-                  <td>{studentData.DS}</td>
-                </tr>
-                <tr>
-                  <td>Vector Calculus And Complex Functions (VCCF)</td>
-                  <td>{studentData.VCCF}</td>
-                </tr>
-                <tr>
-                  <td>Design and Analysis of Algorithms (DAA)</td>
-                  <td>{studentData.DAA}</td>
-                </tr>
-                <tr>
-                  <td>Digital Principles And Computer Organization (DPCO)</td>
-                  <td>{studentData.DPCO}</td>
-                </tr>
+                <tr><td>Java Programming (JP)</td><td>{studentData.JP}</td></tr>
+                <tr><td>Data Structures (DS)</td><td>{studentData.DS}</td></tr>
+                <tr><td>Vector Calculus And Complex Functions (VCCF)</td><td>{studentData.VCCF}</td></tr>
+                <tr><td>Design and Analysis of Algorithms (DAA)</td><td>{studentData.DAA}</td></tr>
+                <tr><td>Digital Principles And Computer Organization (DPCO)</td><td>{studentData.DPCO}</td></tr>
               </tbody>
             </table>
             <div className="result-footer">
