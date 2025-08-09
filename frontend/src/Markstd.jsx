@@ -8,7 +8,7 @@ export const Markstd = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:500/stdmark/${rollno}`);
+        const response = await fetch(`http://localhost:5000/stdmark/${rollno}`);
         const data = await response.json();
 
         if (response.ok) {
