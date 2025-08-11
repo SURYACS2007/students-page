@@ -35,7 +35,12 @@ function Login() {
 
   return (
     <div className="login-body">
+      <header className="header">
+        DHIRAJLAL GANDHI COLLEGE OF TECHNOLOGY
+      </header>
+
       <div className="login-card">
+
         <h2 className="login-title">Login</h2>
         <form onSubmit={handleSubmit} className="login-form">
           <label htmlFor="username">Username</label>
