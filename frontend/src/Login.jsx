@@ -36,7 +36,7 @@ function Login() {
   return (
     <div className="login-body">
       <header className="header">
-        DHIRAJLAL GANDHI COLLEGE OF TECHNOLOG
+        DHIRAJLAL GANDHI COLLEGE OF TECHNOLOGY , Salem
       </header>
 
       <div className="login-card">
