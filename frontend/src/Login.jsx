@@ -40,6 +40,10 @@ function Login() {
       </header>
 
       <div className="login-card">
+                <div className="notice">
+          📢 Upcoming Results will be published on 
+          <span className="date"> 30th August 2025 At 9 AM</span>
+        </div>
 
         <h2 className="login-title">Login</h2>
         <form onSubmit={handleSubmit} className="login-form">
