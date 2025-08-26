@@ -53,6 +53,21 @@ app.post('/login', (req, res) => {
   });
 });
 
+// app.get('/stdmark/:rollno', (req, res) => {
+//   const rollno = req.params.rollno;
+//   db.query('SELECT * FROM submark WHERE ROLL = ?', [rollno], (err, results) => {
+//     if (err) {
+//       console.error('Error fetching data:', err);
+//       return res.status(500).json({ error: 'Database query failed' });
+//     }
+//     if (results.length > 0) {
+//       res.status(200).json(results[0]);
+//     } else {
+//       res.status(404).json({ message: 'No data found for this roll number' });
+//     }
+//   });
+// });
+
 app.get('/stdmark/:rollno', (req, res) => {
   const rollno = req.params.rollno;
   db.query('SELECT * FROM submark WHERE ROLL = ?', [rollno], (err, results) => {
@@ -61,12 +76,13 @@ app.get('/stdmark/:rollno', (req, res) => {
       return res.status(500).json({ error: 'Database query failed' });
     }
     if (results.length > 0) {
-      res.status(200).json(results[0]);
+      res.status(200).json(results[0]);  // this includes TOTAL column also
     } else {
       res.status(404).json({ message: 'No data found for this roll number' });
     }
   });
 });
+
 
 // Listen on the port Render provides
 const PORT = process.env.PORT || 5000;

@@ -12,6 +12,12 @@
   color: white;
   border-radius: 8px 8px 0 0;
 }
+.total-row {
+  background-color: #e8f5e9;
+  font-weight: bold;
+  color: #1b5e20;
+}
+
 
 .result-header h1 {
   margin: 0;

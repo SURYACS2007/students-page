@@ -31,7 +31,6 @@ export const Markstd = () => {
     <div className="result-page">
       <header className="result-header">
         <h1>Student Result Portal</h1>
-        <p className="result-date">Generated on: August 09, 2025, 09:49 PM IST</p>
       </header>
       <div className="result-container">
         {studentData ? (
@@ -42,17 +41,24 @@ export const Markstd = () => {
               <p><strong>Name:</strong> {studentData.NAME}</p>
             </div>
             <table className="result-table">
-              <thead>
-                <tr><th>Subject</th><th>Marks</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>Java Programming (JP)</td><td>{studentData.JP}</td></tr>
-                <tr><td>Data Structures (DS)</td><td>{studentData.DS}</td></tr>
-                <tr><td>Vector Calculus And Complex Functions (VCCF)</td><td>{studentData.VCCF}</td></tr>
-                <tr><td>Design and Analysis of Algorithms (DAA)</td><td>{studentData.DAA}</td></tr>
-                <tr><td>Digital Principles And Computer Organization (DPCO)</td><td>{studentData.DPCO}</td></tr>
-              </tbody>
-            </table>
+  <thead>
+    <tr><th>Subject</th><th>Marks</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Java Programming (JP)</td><td>{studentData.JP}</td></tr>
+    <tr><td>Data Structures (DS)</td><td>{studentData.DS}</td></tr>
+    <tr><td>Vector Calculus And Complex Functions (VCCF)</td><td>{studentData.VCCF}</td></tr>
+    <tr><td>Design and Analysis of Algorithms (DAA)</td><td>{studentData.DAA}</td></tr>
+    <tr><td>Digital Principles And Computer Organization (DPCO)</td><td>{studentData.DPCO}</td></tr>
+
+    {/* ✅ Total Row */}
+    <tr className="total-row">
+      <td><strong>Total</strong></td>
+      <td><strong>{studentData.total}</strong></td>
+    </tr>
+  </tbody>
+</table>
+
             <div className="result-footer">
               <p>Disclaimer: This is an official record. For any discrepancies, contact the administration.</p>
             </div>
