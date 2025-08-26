@@ -29,7 +29,7 @@ db.getConnection((err, connection) => {
 // Your routes here ...
 
 app.get('/stdmark', (req, res) => {
-  db.query('SELECT * FROM stdmark', (err, results) => {
+  db.query('SELECT * FROM submark', (err, results) => {
     if (err) {
       console.error('Error fetching data:', err);
       return res.status(500).json({ error: 'Database query failed' });
@@ -40,7 +40,7 @@ app.get('/stdmark', (req, res) => {
 
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
-  db.query('SELECT * FROM stdmark WHERE NAME = ? AND ROLL = ?', [username, password], (err, results) => {
+  db.query('SELECT * FROM submark WHERE NAME = ? AND ROLL = ?', [username, password], (err, results) => {
     if (err) {
       console.error('Error during login:', err);
       return res.status(500).json({ message: 'Internal server error' });
@@ -55,7 +55,7 @@ app.post('/login', (req, res) => {
 
 app.get('/stdmark/:rollno', (req, res) => {
   const rollno = req.params.rollno;
-  db.query('SELECT * FROM stdmark WHERE ROLL = ?', [rollno], (err, results) => {
+  db.query('SELECT * FROM submark WHERE ROLL = ?', [rollno], (err, results) => {
     if (err) {
       console.error('Error fetching data:', err);
       return res.status(500).json({ error: 'Database query failed' });
