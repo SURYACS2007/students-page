@@ -60,8 +60,9 @@ export const Markstd = () => {
                   <td><strong>Total</strong></td>
                   <td><strong>{studentData.total}</strong></td>
                 </tr>
-                <h3>No of Subject Failed : {studentData.subjects_failed}</h3>
-                <h3>No of Subject Passed : {studentData.subjects_passed}</h3>
+                <h6>No of Subject Failed : {studentData.subjects_failed}</h6>
+                <h6>No of Subject Passed : {studentData.subjects_passed}</h6>
+                <h6>Percentage : {studentData.percentage}</h6>
                 
               </tbody>
             </table>
