@@ -6,7 +6,7 @@ const API_BASE_URL = 'https://students-page.onrender.com';
 
 function Login() {
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [rollno, setRollno] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -16,14 +16,14 @@ function Login() {
       const response = await fetch(`${API_BASE_URL}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username, rollno }), // ✅ send correct keys
       });
 
       const data = await response.json();
 
       if (response.ok) {
         localStorage.setItem('rollno', data.rollno);
-        navigate('/stdmark');
+        navigate('/stdmark'); // ✅ go to result page immediately
       } else {
         alert(data.message || 'Invalid username or roll number.');
       }
@@ -40,7 +40,7 @@ function Login() {
       </header>
 
       <div className="login-card">
-                <div className="notice">
+        <div className="notice">
           📢 Upcoming Results will be published on 
           <span className="date"> 30th August 2025 At 9 AM</span>
         </div>
@@ -58,15 +58,15 @@ function Login() {
             autoComplete="username"
           />
 
-          <label htmlFor="password">Roll no</label>
+          <label htmlFor="rollno">Roll no</label>
           <input
             id="rollno"
             type="text"
             required
             placeholder="Enter roll number"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            autoComplete="current-password"
+            value={rollno}
+            onChange={(e) => setRollno(e.target.value)}
+            autoComplete="off"
           />
 
           <button type="submit" className="btn-login">Log In</button>
