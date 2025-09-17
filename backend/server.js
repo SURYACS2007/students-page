@@ -36,7 +36,7 @@ db.getConnection((err, connection) => {
 
 // ✅ Get all student marks
 app.get("/stdmark", (req, res) => {
-  db.query("SELECT * FROM submark", (err, results) => {
+  db.query("SELECT * FROM stdmark", (err, results) => {
     if (err) {
       console.error("Error fetching data:", err);
       return res.status(500).json({ error: "Database query failed" });
@@ -54,7 +54,7 @@ app.post("/login", (req, res) => {
   }
 
   db.query(
-    "SELECT * FROM submark WHERE NAME = ? AND ROLL = ?",
+    "SELECT * FROM stdmark WHERE NAME = ? AND ROLL = ?",
     [username, rollno],
     (err, results) => {
       if (err) {
@@ -77,7 +77,7 @@ app.post("/login", (req, res) => {
 // ✅ Get marks for a single student
 app.get("/stdmark/:rollno", (req, res) => {
   const rollno = req.params.rollno;
-  db.query("SELECT * FROM submark WHERE ROLL = ?", [rollno], (err, results) => {
+  db.query("SELECT * FROM stdmark WHERE ROLL = ?", [rollno], (err, results) => {
     if (err) {
       console.error("Error fetching data:", err);
       return res.status(500).json({ error: "Database query failed" });
