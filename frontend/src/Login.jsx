@@ -13,17 +13,28 @@ function Login() {
     e.preventDefault();
 
     try {
+      // Trim input to avoid extra spaces
+      const payload = {
+        username: username.trim(),
+        rollno: rollno.trim(), // keep as string
+      };
+
+      console.log("Sending login payload:", payload);
+
       const response = await fetch(`${API_BASE_URL}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, rollno }), // ✅ send correct keys
+        body: JSON.stringify(payload),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem('rollno', data.rollno);
-        navigate('/stdmark'); // ✅ go to result page immediately
+        // Save roll number in local storage
+        localStorage.setItem('rollno', data.rollno || payload.rollno);
+
+        // Navigate to result page
+        navigate('/stdmark');
       } else {
         alert(data.message || 'Invalid username or roll number.');
       }
@@ -55,7 +66,7 @@ function Login() {
             placeholder="Enter username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            autoComplete="username"
+            autoComplete="off"
           />
 
           <label htmlFor="rollno">Roll no</label>

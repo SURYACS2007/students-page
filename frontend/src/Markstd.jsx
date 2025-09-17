@@ -5,7 +5,7 @@ const API_BASE_URL = 'https://students-page.onrender.com';
 
 export const Markstd = () => {
   const [studentData, setStudentData] = useState(null);
-  const rollno = localStorage.getItem('rollno');
+  const rollno = localStorage.getItem('rollno'); // get saved roll no
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,27 +40,34 @@ export const Markstd = () => {
               <p><strong>Roll No:</strong> {studentData.ROLL}</p>
               <p><strong>Name:</strong> {studentData.NAME}</p>
             </div>
-            <table className="result-table">
-  <thead>
-    <tr><th>Subject</th><th>Marks</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Java Programming (JP)</td><td>{studentData.JP}</td></tr>
-    <tr><td>Data Structures (DS)</td><td>{studentData.DS}</td></tr>
-    <tr><td>Vector Calculus And Complex Functions (VCCF)</td><td>{studentData.VCCF}</td></tr>
-    <tr><td>Design and Analysis of Algorithms (DAA)</td><td>{studentData.DAA}</td></tr>
-    <tr><td>Digital Principles And Computer Organization (DPCO)</td><td>{studentData.DPCO}</td></tr>
 
-    {/* ✅ Total Row */}
-    <tr className="total-row">
-      <td><strong>Total</strong></td>
-      <td><strong>{studentData.total}</strong></td>
-    </tr>
-  </tbody>
-</table>
+            <table className="result-table">
+              <thead>
+                <tr>
+                  <th>Subject</th>
+                  <th>Marks</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Java Programming (JP)</td><td>{studentData.JP}</td></tr>
+                <tr><td>Data Structures (DS)</td><td>{studentData.DS}</td></tr>
+                <tr><td>Vector Calculus And Complex Functions (VCCF)</td><td>{studentData.VCCF}</td></tr>
+                <tr><td>Design and Analysis of Algorithms (DAA)</td><td>{studentData.DAA}</td></tr>
+                <tr><td>Digital Principles And Computer Organization (DPCO)</td><td>{studentData.DPCO}</td></tr>
+
+                {/* ✅ Total */}
+                <tr className="total-row">
+                  <td><strong>Total</strong></td>
+                  <td><strong>{studentData.total}</strong></td>
+                </tr>
+              </tbody>
+            </table>
 
             <div className="result-footer">
-              <p>Disclaimer: This is an official record. For any discrepancies, contact the administration.</p>
+              <p>
+                Disclaimer: This is an official record. For any discrepancies,
+                contact the administration.
+              </p>
             </div>
           </div>
         ) : (
