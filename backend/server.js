@@ -17,6 +17,7 @@ const db = mysql.createPool({
   port: process.env.DB_PORT || 3306,
 });
 
+// Test DB connection
 db.getConnection((err, connection) => {
   if (err) {
     console.error('Database connection failed:', err.stack);
@@ -26,8 +27,7 @@ db.getConnection((err, connection) => {
   connection.release();
 });
 
-// Your routes here ...
-
+// Get all student marks
 app.get('/stdmark', (req, res) => {
   db.query('SELECT * FROM submark', (err, results) => {
     if (err) {
@@ -38,36 +38,31 @@ app.get('/stdmark', (req, res) => {
   });
 });
 
+// ✅ Fixed login route (username + rollno)
 app.post('/login', (req, res) => {
-  const { username, password } = req.body;
-  db.query('SELECT * FROM submark WHERE NAME = ? AND ROLL = ?', [username, password], (err, results) => {
-    if (err) {
-      console.error('Error during login:', err);
-      return res.status(500).json({ message: 'Internal server error' });
+  const { username, rollno } = req.body;
+
+  db.query(
+    'SELECT * FROM submark WHERE NAME = ? AND ROLL = ?',
+    [username, rollno],
+    (err, results) => {
+      if (err) {
+        console.error('Error during login:', err);
+        return res.status(500).json({ message: 'Internal server error' });
+      }
+      if (results.length > 0) {
+        res.status(200).json({ 
+          message: 'Login successful',
+          rollno: results[0].ROLL 
+        });
+      } else {
+        res.status(401).json({ message: 'Invalid username or roll number' });
+      }
     }
-    if (results.length > 0) {
-      res.status(200).json({ message: 'Login successful', rollno: results[0].ROLL });
-    } else {
-      res.status(401).json({ message: 'Invalid username or roll number' });
-    }
-  });
+  );
 });
 
-// app.get('/stdmark/:rollno', (req, res) => {
-//   const rollno = req.params.rollno;
-//   db.query('SELECT * FROM submark WHERE ROLL = ?', [rollno], (err, results) => {
-//     if (err) {
-//       console.error('Error fetching data:', err);
-//       return res.status(500).json({ error: 'Database query failed' });
-//     }
-//     if (results.length > 0) {
-//       res.status(200).json(results[0]);
-//     } else {
-//       res.status(404).json({ message: 'No data found for this roll number' });
-//     }
-//   });
-// });
-
+// Get marks for a single student
 app.get('/stdmark/:rollno', (req, res) => {
   const rollno = req.params.rollno;
   db.query('SELECT * FROM submark WHERE ROLL = ?', [rollno], (err, results) => {
@@ -76,15 +71,14 @@ app.get('/stdmark/:rollno', (req, res) => {
       return res.status(500).json({ error: 'Database query failed' });
     }
     if (results.length > 0) {
-      res.status(200).json(results[0]);  // this includes TOTAL column also
+      res.status(200).json(results[0]);  // includes TOTAL column too
     } else {
       res.status(404).json({ message: 'No data found for this roll number' });
     }
   });
 });
 
-
-// Listen on the port Render provides
+// Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

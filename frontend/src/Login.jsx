@@ -13,10 +13,10 @@ function Login() {
     e.preventDefault();
 
     try {
-      // Trim input to avoid extra spaces
+      // Prepare payload (trim spaces)
       const payload = {
         username: username.trim(),
-        rollno: rollno.trim(), // keep as string
+        rollno: rollno.trim(),
       };
 
       console.log("Sending login payload:", payload);
